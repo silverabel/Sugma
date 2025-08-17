@@ -50,6 +50,8 @@ GuildBankStuffer = {
         BAG_BACKPACK = BAG_BACKPACK,
         BAG_GUILDBANK = BAG_GUILDBANK,
         TOPLEFT = TOPLEFT,
+        BOTTOMLEFT = BOTTOMLEFT,
+        CT_LABEL = CT_LABEL,
         GetItemLink = GetItemLink,
         GetItemId = GetItemId,
         GetItemTrait = GetItemTrait,
@@ -111,20 +113,14 @@ GuildBankStuffer = {
 GuildBankStuffer.callables = {
     [1] = {
         key = "GUILDBANKSTUFFER_START_WITHDRAW",
-        label = "Withdraw and deposit",
+        label = "Stack and deposit",
         callback = function() GuildBankStuffer:StartTransferFromGuildBank(); end,
-        keybindPosition = "left",
-        keybindIndex = 1,
-        visible = function() return true end,
         showInGui = true,
     },
     [2] = {
         key = "GUILDBANKSTUFFER_START_DEPOSIT",
         label = "Deposit only",
         callback = function() GuildBankStuffer:StartTransferToGuildBank(); end,
-        keybindPosition = "left",
-        keybindIndex = 2,
-        visible = function() return true end,
         showInGui = true,
     },
     [3] = {
@@ -151,9 +147,6 @@ GuildBankStuffer.callables = {
 
 GuildBankStuffer.keybinds = (function()
     local keybinds = {
-        left = {
-            alignment = GuildBankStuffer.G.KEYBIND_STRIP_ALIGN_LEFT,
-        },
         right = {
             alignment = GuildBankStuffer.G.KEYBIND_STRIP_ALIGN_RIGHT,
         },
@@ -205,7 +198,6 @@ end;
 
 function GuildBankStuffer:InitEvents()
     self.G.EVENT_MANAGER:RegisterForEvent(self.Name, self.G.EVENT_OPEN_GUILD_BANK, function()
-        self.G.KEYBIND_STRIP:AddKeybindButtonGroup(self.keybinds.left);
         self.G.KEYBIND_STRIP:AddKeybindButtonGroup(self.keybinds.right);
         self.state.active = true;
 
@@ -215,7 +207,6 @@ function GuildBankStuffer:InitEvents()
     end);
 
     self.G.EVENT_MANAGER:RegisterForEvent(self.Name, self.G.EVENT_CLOSE_GUILD_BANK, function()
-        self.G.KEYBIND_STRIP:RemoveKeybindButtonGroup(self.keybinds.left);
         self.G.KEYBIND_STRIP:RemoveKeybindButtonGroup(self.keybinds.right);
         self.state.active = false;
         self.GuildBankStufferWindowControl().DoFadeOut();

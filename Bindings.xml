@@ -7,12 +7,6 @@
             <Action name="GUILDBANKSTUFFER_UNMARK_DEPOSIT">
                 <Down>GuildBankStuffer:UnmarkDeposit()</Down>
             </Action>
-            <Action name="GUILDBANKSTUFFER_START_WITHDRAW">
-                <Down>GuildBankStuffer:StartTransferFromGuildBank()</Down>
-            </Action>
-            <Action name="GUILDBANKSTUFFER_START_DEPOSIT">
-                <Down>GuildBankStuffer:StartTransferToGuildBank()</Down>
-            </Action>
         </Category>
     </Layer>
 </Bindings>

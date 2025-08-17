@@ -31,6 +31,17 @@ function GuildBankStuffer:InitGui()
         end
     end
 
+    do
+        local control = self.G.WINDOW_MANAGER:CreateControl("GuildBankStufferDescription", window, self.G.CT_LABEL);
+        control:SetAnchor(self.G.BOTTOMLEFT, window, self.G.BOTTOMLEFT, 15, -15);
+        control:SetFont("ZoFontGame")
+        control:SetText([[
+Set keyboard shortcut for "Mark deposit" (and "Unmark deposit").
+Hover over items in your inventory and mark them for deposit using the shortcut.
+Use buttons "Stack and deposit" or "Deposit only"
+to automatically deposit and/or stack all items you have marked.]]);
+    end
+
     local animation = self.G.ZO_AlphaAnimation:New(window);
     window.DoFadeIn = function()
         animation:FadeIn(0, 300);
